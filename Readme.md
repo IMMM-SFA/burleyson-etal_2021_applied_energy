@@ -18,7 +18,7 @@ Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Support
 
 ## Data reference
 
-### Raw Input data
+### Input data
 
 Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Input data for Burleyson et al. 2021 - Applied Energy [Data set]. Zenodo. TBD
 
@@ -26,13 +26,15 @@ Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Input d
 Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Output data for Burleyson et al. 2021 - Applied Energy [Data set]. Zenodo. TBD
 
 ## Reproduce my experiment
-1. Download and unzip the supporting raw input data required to conduct the experiment from [Input data](#input-data)
+1. Download and unzip the input data required to conduct the experiment from [Input data](#input-data). Note that the Commonwealth Edison (ComEd) dataset used in Section 3.1 is proprietary. As such we cannot share the raw or processed data underpinning that analysis. However, we do share the scripts used to process that data and generate the figures that rely on the ComEd data (Scripts 1-3 below).
+
 2. Run the following scripts in the `workflow` directory to re-create this experiment:
 
-| Script Name | Description | How to Run |
+| Script Number | Script Name | Purpose |
 | --- | --- | --- |
-| `step_one.py` | Script to run the first part of my experiment | `python3 step_one.py -f /path/to/inputdata/file_one.csv` |
-| `step_two.py` | Script to run the last part of my experiment | `python3 step_two.py -o /path/to/my/outputdir` |
+| 1 | `Process_Raw_ComEd_Data.m` | Script to process the raw ComEd data into Matlab files |
+
 
 4. Download and unzip the output data from my experiment [Output data](#output-data)
-5. Run the following scripts in the `workflow` directory to compare my outputs to those from the publication
+
+5. Run the following scripts in the `workflow` directory to compare your outputs to those from the publication
