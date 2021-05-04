@@ -1,10 +1,8 @@
-_your zenodo badge here_
+# Burleyson-etal_2021_applied_energy
 
-# lastname-etal_year_journal
+**Multiscale Effects Can Mask the Impact of the COVID-19 Pandemic on Electricity Demand**
 
-**A long-term global energy-economic model of carbon dioxide release from fossil fuel use**
-
-Jae Edmonds<sup>1\*</sup> and John Reilly<sup>1</sup>
+Casey Burleyson<sup>1\*</sup>, Aowabin Rahman<sup>1</sup>  
 
 <sup>1 </sup> Institute for Energy Analysis, Oak Ridge Associated Universities, 1346 Connecticut Avenue, NW, Washington, DC 20036, USA
 
