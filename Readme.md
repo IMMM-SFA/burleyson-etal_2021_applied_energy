@@ -26,14 +26,15 @@ Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Support
 
 | Script Number | Script Name | Purpose |
 | --- | --- | --- |
-| 1 | `.m` | TBD |
-| 2 | `.m` | TBD |
-| 3 | `Process_Raw_ComEd_Data.m` | Script to process the raw ComEd data into Matlab files |
+| 1 | `Process_Raw_ComEd_Data.m` | Script to process the raw ComEd data into Matlab files |
+| 2 | `Process_ComEd_Monthly_Total_Load_Profiles.m` | Script to process average weekday and weekend load profiles for all ComEd customers for each month from April 2018 through September 2020 |
+| 3 | `Process_ComEd_Monthly_Residential_Load_Profiles.m` | Script to process average weekday and weekend load profiles for residential ComEd customers for each month from April 2018 through September 2020 |
+| 4 | `Process_ComEd_Monthly_Non_Residential_Load_Profiles.m` | Script to process average weekday and weekend load profiles for non-residential ComEd customers for each month from April 2018 through September 2020 |
 
 3. Run the following scripts in the `figures` directory to reproduce our figures and compare your outputs to those from the publication.
 
 | Script Number | Script Name | Purpose |
 | --- | --- | --- |
-| 1 | `.m` | TBD |
-| 2 | `.m` | TBD |
+| X | `.m` | TBD |
+| X | `.m` | TBD |
 | X | `Figure_3_ComEd_Shutdown.m` | Script to process the underpinning data and generate Fig. 3 |

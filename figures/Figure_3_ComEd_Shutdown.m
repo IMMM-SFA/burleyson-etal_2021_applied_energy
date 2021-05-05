@@ -6,7 +6,9 @@
 % This script corresponds to Fig. 3. It computes the average weekday load 
 % profiles for ComEd residential, non-residential, and all customers for 
 % a 13 week period from February through April 2020. It uses two pre-processing
-% steps to minimize run-time when all you want to do is tweak the figures.
+% steps to minimize run-time when all you want to do is tweak the figures. The 
+% "data_directory" variable should  be set to the path of the input data that 
+% you downloaded in Step 1 of the workflow. 
 
 warning off all; clear all; close all; 
 
@@ -111,7 +113,7 @@ if process_raw_data == 1
    end
    clear row counter File_Names File_Times
    
-   % Create a time vector that matches the width of the "Mean_Load" and "Load_Sum" arrays:
+   % Create a time vector for half-hourly intervals across the diurnal cycle:
    Time_Vector = [0:0.5:23.5];
    
    % Save the results of the first pre-processing step:
