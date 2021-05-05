@@ -1,4 +1,4 @@
-% Process_ComEd_Monthly_Residential_Load_Profiles.m
+% Process_ComEd_Monthly_Load_Profiles.m
 % 20210505
 % Casey D. Burleyson
 % Pacific Northwest National Laboratory
@@ -6,13 +6,18 @@
 warning off all; clear all; close all;
 
 % This script processes the data underpinning Fig. 4 of the paper. It computes 
-% the average weekday and weekend load profiles all ComEd customers for each 
-% month from April 2018 through September 2020. The "data_directory" variable should  
-% be set to the path of the input data that you downloaded in Step 1 of the workflow.
+% the average weekday and weekend load profiles for each month from April 2018 
+% through September 2020. The "data_directory" variable should be set to the path 
+% of the input data that you downloaded in Step 1 of the workflow. The user
+% can choose whether to process all, residential, or non-residential ComEd
+% customers.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              BEGIN USER INPUT SECTION               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Set some execution flags:
+customer_class = 1; % (1 = all customers, 2 = residential customers, 3 = non-residential customers)
+
 % Set the base data input and output directories and the image output directory:
 data_directory = '/Users/burl878/OneDrive - PNNL/Documents/Papers/2021_Burleyson_et_al/burleyson-etal_2021_applied_energy_data/';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -65,8 +70,12 @@ for year = 2018:2020
                Aggregate(find(Aggregate(:,9) == 0),9) = NaN.*0;
                Aggregate(:,11) = Aggregate(:,9)./Aggregate(:,3);
                
-               % Subset the data to only the residential customer classes:
-               Aggregate = Aggregate(find(Aggregate(:,1) >= 23 & Aggregate(:,1) <= 26),:);
+               % Subset the data by customer class:
+               if customer_class == 2
+                  Aggregate = Aggregate(find(Aggregate(:,1) >= 23 & Aggregate(:,1) <= 26),:);
+               elseif customer_class == 3
+                  Aggregate = Aggregate(find(Aggregate(:,1) > 26),:);
+               end
                
                Mean_Load = NaN.*ones(31,48);
                   
@@ -116,14 +125,14 @@ clear counter i Progress year File_Names File_Times
 
 % Rename the variables:
 Time = Total_Load_All_Time; clear Total_Load_All_Time 
-Residential_Load = Total_Load_All; clear Total_Load_All
+Total_Load = Total_Load_All; clear Total_Load_All
 
 % Compute the monthly mean profiles on weekdays and weekends:
 counter = 0;
 for year = 2018:2020
     for month = 1:12
         Subset_Time = Time(find(Time(:,1) == year & Time(:,2) == month),:);
-        Subset_Load = Residential_Load(find(Time(:,1) == year & Time(:,2) == month),:);
+        Subset_Load = Total_Load(find(Time(:,1) == year & Time(:,2) == month),:);
         if isempty(Subset_Time) == 0
            counter = counter + 1;
                            
@@ -144,7 +153,13 @@ end
 clear year counter
 
 % Save the output:
-save([data_directory,'/output_data/ComEd_Monthly_Residential_Load_Profiles.mat'],'Mean_Load_Time','Mean_Weekday_Load','Mean_Weekend_Load');
+if customer_class == 1
+   save([data_directory,'/output_data/ComEd_Monthly_Total_Load_Profiles.mat'],'Mean_Load_Time','Mean_Weekday_Load','Mean_Weekend_Load');
+elseif customer_class == 2
+   save([data_directory,'/output_data/ComEd_Monthly_Residential_Load_Profiles.mat'],'Mean_Load_Time','Mean_Weekday_Load','Mean_Weekend_Load');
+elseif customer_class == 3
+   save([data_directory,'/output_data/ComEd_Monthly_Non_Residential_Load_Profiles.mat'],'Mean_Load_Time','Mean_Weekday_Load','Mean_Weekend_Load');
+end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %               END PROCESSING SECTION                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

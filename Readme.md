@@ -20,16 +20,14 @@ Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Support
 Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Supporting data for Burleyson et al. 2021 - Applied Energy [Data set]. Zenodo. TBD
 
 ## Reproduce my experiment
-1. Download and unzip the input data required to conduct the experiment using the DOI link above. Note that the Commonwealth Edison (ComEd) dataset used in Section 3.1 of the paper is proprietary. As such we cannot share the raw or processed data underpinning that analysis. However, we do share the scripts used to process that data and generate the figures that rely on the ComEd data (Scripts 1-4 and X-Y below).
+1. Download and unzip the input data required to conduct the experiment using the DOI link above. Note that the Commonwealth Edison (ComEd) dataset used in Section 3.1 of the paper is proprietary. As such we cannot share the raw or processed data underpinning that analysis. However, we do share the scripts used to process that data and generate the figures that rely on the ComEd data (Scripts 1-2 and X-Y below).
 
 2. Run the following scripts in the `workflow` directory to process the raw data used in this experiment:
 
 | Script Number | Script Name | Purpose |
 | --- | --- | --- |
 | 1 | `Process_Raw_ComEd_Data.m` | Process the raw ComEd data into Matlab files |
-| 2 | `Process_ComEd_Monthly_Total_Load_Profiles.m` | Process monthly average weekday and weekend load profiles for all ComEd customers |
-| 3 | `Process_ComEd_Monthly_Residential_Load_Profiles.m` | Process monthly average weekday and weekend load profiles for residential ComEd customers |
-| 4 | `Process_ComEd_Monthly_Non_Residential_Load_Profiles.m` | Process monthly average weekday and weekend load profiles for non-residential ComEd customers |
+| 2 | `Process_ComEd_Monthly_Load_Profiles.m` | Process monthly average weekday and weekend ComEd load profiles |
 
 3. Run the following scripts in the `figures` directory to reproduce our figures and compare your outputs to those from the publication.
 
