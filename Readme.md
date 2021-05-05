@@ -20,7 +20,7 @@ Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Support
 Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Supporting data for Burleyson et al. 2021 - Applied Energy [Data set]. Zenodo. TBD
 
 ## Reproduce my experiment
-1. Download and unzip the input data required to conduct the experiment from [Input data](## Data reference). Note that the Commonwealth Edison (ComEd) dataset used in Section 3.1 of the paper is proprietary. As such we cannot share the raw or processed data underpinning that analysis. However, we do share the scripts used to process that data and generate the figures that rely on the ComEd data (Scripts 3-5 below).
+1. Download and unzip the input data required to conduct the experiment from [Input data](TBD). Note that the Commonwealth Edison (ComEd) dataset used in Section 3.1 of the paper is proprietary. As such we cannot share the raw or processed data underpinning that analysis. However, we do share the scripts used to process that data and generate the figures that rely on the ComEd data (Scripts 3-5 below).
 
 2. Run the following scripts in the `workflow` directory to process the data this experiment:
 
@@ -30,4 +30,4 @@ Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Support
 | 2 | `.m` | TBD |
 | 3 | `Process_Raw_ComEd_Data.m` | Script to process the raw ComEd data into Matlab files |
 
-3. Run the following scripts in the `workflow` directory to reproduce our figures and compare your outputs to those from the publication.
+3. Run the following scripts in the `figures` directory to reproduce our figures and compare your outputs to those from the publication.
