@@ -6,21 +6,17 @@
 % Take the raw ComEd Anonymous Data Service (ADS) dataset and aggregate the individual zip code +
 % year + month files by customer class. Customer classes are read from the raw files and converted 
 % to a numeric coded value using the "ComEd_Customer_Class_From_Code" function. This script assumes 
-% that the files were downloaded and organized by month as they are in the native ADS data system.
-% Data used in this paper are from April 2018 through September 2021. The "data_dir" variable should 
-% be set to the path of the input data that you downloaded in Step 1 of the workflow.
+% that the files were downloaded and stored in a single directory. It also asssumes that the raw 
+% files are zipped. The "data_directory" variable should  be set to the path of the input data that 
+% you downloaded in Step 1 of the workflow.
 
 warning off all; close all; clear all;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              BEGIN USER INPUT SECTION               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Choose the year and month of data to process:
-year = '2020';
-month = '09';
-
-% Set the data input and output directories:
-data_dir = ['/Users/burl878/OneDrive - PNNL/Documents/Papers/2021_Burleyson_et_al/burleyson-etal_2021_applied_energy_data/'];
+% Set the base data input and output directories:
+data_dir = '/Users/burl878/OneDrive - PNNL/Documents/Papers/2021_Burleyson_et_al/burleyson-etal_2021_applied_energy_data/';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              END USER INPUT SECTION                 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -30,34 +26,41 @@ data_dir = ['/Users/burl878/OneDrive - PNNL/Documents/Papers/2021_Burleyson_et_a
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             BEGIN SUBSETTING SECTION                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Generate a list of zip code files in the input directory you selected:
-input_files = dir([data_dir,'/input_data/ComEd_ADS/Raw/',year,month,'/ANONYMOUS_DATA_*.csv.zip']);
+% Generate a list of ComEd ADS files in the input directory you selected:
+input_files = dir([data_dir,'/input_data/ComEd_ADS/Raw/ANONYMOUS_DATA_*.csv.zip']);
 
 % Loop over each of the files in the filelist:
-for file = 1:size(input_files,1)
-
-       filename = unzip([data_input_dir,input_files(file,1).name],[data_input_dir,'Temp/']);
-       unzipped_file = filename{1,1};
-       Zip_Code = str2num(unzipped_file(1,[(size(unzipped_file,2)-8):(size(unzipped_file,2)-4)]));
+% for file = 1:size(input_files,1)
+for file = 1
+    % Unzip the file to a subdirector 'Temp/' and extract the filename:
+    filename = unzip([data_dir,'/input_data/ComEd_ADS/Raw/',input_files(file,1).name],[data_dir,'/input_data/ComEd_ADS/Raw/Temp/']);
+    unzipped_file = filename{1,1};
+    
+    % Extract the zip code from the filename:
+    Zip_Code = str2num(unzipped_file(1,[(size(unzipped_file,2)-8):(size(unzipped_file,2)-4)]));
        
-       str = fileread(unzipped_file);
-       str = strrep(str,'10,000','10000'); % Remove comma in "10,000"
-       cac = textscan(str,'%f%q%q%f%D%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f','Headerlines',1,'Delimiter',',');
-       for column = 1:size(cac,2)
-           Raw_Table(:,column) = table(cac{1,column});
-       end
-       clear str cac column
-       Raw_Table = Raw_Table(:,1:57);
+    % Read in the .csv file:
+    str = fileread(unzipped_file);
     
-
+    % Remove comma in "10,000" which they choose to include in a .csv file for some unknown reason:
+    str = strrep(str,'10,000','10000'); 
     
+    % Scan the read in file and extract the data into a data matrix called "Raw_Table":
+    cac = textscan(str,'%f%q%q%f%D%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f','Headerlines',1,'Delimiter',',');
+    for column = 1:size(cac,2)
+        Raw_Table(:,column) = table(cac{1,column});
+    end
+    clear str cac column
+    Raw_Table = Raw_Table(:,1:57);
     
+    % Extract some metadata about the file being processed: 
     Metadata(:,1) = NaN.*ones(size(Raw_Table,1),1);
     Metadata(:,1) = cellfun(@ComEd_Customer_Class_From_Code,table2cell(Raw_Table(:,2))); % In-House customer class code
     Metadata(:,2) = Raw_Table{:,4}; % Unique account identifier
     Metadata(:,3) = datenum(Raw_Table{:,5}); % Date in Matlab's datenum format
     Load = table2array(Raw_Table(:,8:55)); % Break out the load values into a separate array
     
+    % Loop over all of the customer classes in the table and sum the load for all customers in that customer class:
     i = 0;
     for class = [min(Metadata(:,1)):1:max(Metadata(:,1))];
         Class_Subset_Metadata = Metadata(find(Metadata(:,1) == class),:);
@@ -86,21 +89,22 @@ for file = 1:size(input_files,1)
     end
     clear i class
     
-    % Convert the output to a table and assign variable names:
-    Output_Table = array2table(Aggregate);
-    Output_Table.Properties.VariableNames = {'Customer_Class','Zip_Code','Sample_Size','Year','Month','Day','Hour','Minute','Load_KWH'};
-    
-    % Save the output:
-    writetable(Output_Table,[data_output_dir,'Aggregations/CSV/ComEd_',year,month,'_',num2str(Zip_Code),'.csv'],'Delimiter',',','WriteVariableNames',1);
-    save([data_output_dir,'Aggregations/MAT/ComEd_',year,month,'_',num2str(Zip_Code),'.mat'],'Aggregate');
+    % Save the ouput as a .mat file with the following file format:
+    % C1 = Customer class code
+    % C2 = Zip code
+    % C3 = Sample size (number of customers in that class)
+    % C4 = Year
+    % C5 = Month
+    % C6 = Day
+    % C7 = Hour
+    % C8 = Minute (either 0 or 30)
+    % C9 = Total load for all customers of that customer class in kWh
+    save([data_dir,'/input_data/ComEd_ADS/Processed/ComEd_',num2str(Aggregate(1,4)),num2str(Aggregate(1,5),'%02d'),'_',num2str(Zip_Code),'.mat'],'Aggregate');
        
     % Clean up variables and output progress:
-    if compression == 1
-       delete(unzipped_file)
-       clear filename unzipped_file
-    end
+    delete(unzipped_file)
     Percent_Complete = (file/size(input_files,1))*100
-    clear Raw_Table Zip_Code Percent_Complete Output_Table Aggregate Load Metadata
+    clear Raw_Table Zip_Code Percent_Complete Output_Table Aggregate Load Metadata filename unzipped_file ans 
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              END SUBSETTING SECTION                 %
@@ -111,8 +115,7 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                BEGIN CLEANUP SECTION                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-clear linux compression data_input_dir data_output_dir file save_clean_csv
-toc;
+clear data_dir file
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 END CLEANUP SECTION                 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
