@@ -8,7 +8,7 @@
 % to a numeric coded value using the "ComEd_Customer_Class_From_Code" function. This script assumes 
 % that the files were downloaded and stored in a single directory. It also asssumes that the raw 
 % files are zipped. The "data_directory" variable should  be set to the path of the input data that 
-% you downloaded in Step 1 of the workflow.
+% you downloaded in Step 1 of the workflow. This paper uses ComEd data from April 2018 through September 2020.
 
 warning off all; close all; clear all;
 
@@ -16,7 +16,7 @@ warning off all; close all; clear all;
 %              BEGIN USER INPUT SECTION               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Set the base data input and output directories:
-data_dir = '/Users/burl878/OneDrive - PNNL/Documents/Papers/2021_Burleyson_et_al/burleyson-etal_2021_applied_energy_data/';
+data_directory = '/Users/burl878/OneDrive - PNNL/Documents/Papers/2021_Burleyson_et_al/burleyson-etal_2021_applied_energy_data/';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              END USER INPUT SECTION                 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -27,13 +27,13 @@ data_dir = '/Users/burl878/OneDrive - PNNL/Documents/Papers/2021_Burleyson_et_al
 %             BEGIN SUBSETTING SECTION                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Generate a list of ComEd ADS files in the input directory you selected:
-input_files = dir([data_dir,'/input_data/ComEd_ADS/Raw/ANONYMOUS_DATA_*.csv.zip']);
+input_files = dir([data_directory,'/input_data/ComEd_ADS/Raw/ANONYMOUS_DATA_*.csv.zip']);
 
 % Loop over each of the files in the filelist:
 % for file = 1:size(input_files,1)
 for file = 1
     % Unzip the file to a subdirector 'Temp/' and extract the filename:
-    filename = unzip([data_dir,'/input_data/ComEd_ADS/Raw/',input_files(file,1).name],[data_dir,'/input_data/ComEd_ADS/Raw/Temp/']);
+    filename = unzip([data_directory,'/input_data/ComEd_ADS/Raw/',input_files(file,1).name],[data_directory,'/input_data/ComEd_ADS/Raw/Temp/']);
     unzipped_file = filename{1,1};
     
     % Extract the zip code from the filename:
@@ -99,7 +99,7 @@ for file = 1
     % C7 = Hour
     % C8 = Minute (either 0 or 30)
     % C9 = Total load for all customers of that customer class in kWh
-    save([data_dir,'/input_data/ComEd_ADS/Processed/ComEd_',num2str(Aggregate(1,4)),num2str(Aggregate(1,5),'%02d'),'_',num2str(Zip_Code),'.mat'],'Aggregate');
+    save([data_directory,'/input_data/ComEd_ADS/Processed/ComEd_',num2str(Aggregate(1,4)),num2str(Aggregate(1,5),'%02d'),'_',num2str(Zip_Code),'.mat'],'Aggregate');
        
     % Clean up variables and output progress:
     delete(unzipped_file)
