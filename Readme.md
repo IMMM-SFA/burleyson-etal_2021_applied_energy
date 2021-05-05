@@ -34,7 +34,7 @@ Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Support
 
 | Script Number | Script Name | Purpose |
 | --- | --- | --- |
-| X | `.m` | TBD |
+| X | `Figure_1_EIA_Forecast_Error.m` | Process the underpinning data and generate Fig. 1 |
 | X | `.m` | TBD |
 | X | `Figure_3_ComEd_Shutdown.m` | Process the underpinning data and generate Fig. 3 |
 | X | `Figure_4_ComEd_AJS.m` | Process the underpinning data and generate Fig. 4 |
