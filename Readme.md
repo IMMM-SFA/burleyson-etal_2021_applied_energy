@@ -30,6 +30,7 @@ Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Support
 | 2 | `Process_ComEd_Monthly_Load_Profiles.m` | Process monthly average weekday and weekend ComEd load profiles |
 | 3 | `Process_Raw_EIA_Regional_Hourly_Load_Data.m` | Process the raw EIA regional hourly load data into Matlab files |
 | 4 | `Process_HIFLD_Control_Area_Shapefiles.m` | Process the shapefiles for HIFLD control areas into Matlab files |
+| 5 | `Process_Raw_EIA_Balancing_Authority_Hourly_Load_Data` | Process the raw EIA balancing authority hourly load data into Matlab files |
 
 3. Run the following scripts in the `figures` directory to reproduce our figures and compare your outputs to those from the publication.
 
