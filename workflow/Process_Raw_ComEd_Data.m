@@ -30,8 +30,7 @@ data_directory = '/Users/burl878/OneDrive - PNNL/Documents/Papers/2021_Burleyson
 input_files = dir([data_directory,'/input_data/ComEd_ADS/Raw/ANONYMOUS_DATA_*.csv.zip']);
 
 % Loop over each of the files in the filelist:
-% for file = 1:size(input_files,1)
-for file = 1
+for file = 1:size(input_files,1)
     % Unzip the file to a subdirector 'Temp/' and extract the filename:
     filename = unzip([data_directory,'/input_data/ComEd_ADS/Raw/',input_files(file,1).name],[data_directory,'/input_data/ComEd_ADS/Raw/Temp/']);
     unzipped_file = filename{1,1};
