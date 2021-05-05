@@ -17,24 +17,17 @@ Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Multisc
 Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Supporting code for Burleyson et al. 2021 - Applied Energy [Code]. Zenodo. TBD
 
 ## Data reference
-
-### Input data
-
-Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Input data for Burleyson et al. 2021 - Applied Energy [Data set]. Zenodo. TBD
-
-### Output data
-Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Output data for Burleyson et al. 2021 - Applied Energy [Data set]. Zenodo. TBD
+Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Supporting data for Burleyson et al. 2021 - Applied Energy [Data set]. Zenodo. TBD
 
 ## Reproduce my experiment
-1. Download and unzip the input data required to conduct the experiment from [Input data](#input-data). Note that the Commonwealth Edison (ComEd) dataset used in Section 3.1 is proprietary. As such we cannot share the raw or processed data underpinning that analysis. However, we do share the scripts used to process that data and generate the figures that rely on the ComEd data (Scripts 1-3 below).
+1. Download and unzip the input data required to conduct the experiment from [Input data](## Data reference). Note that the Commonwealth Edison (ComEd) dataset used in Section 3.1 of the paper is proprietary. As such we cannot share the raw or processed data underpinning that analysis. However, we do share the scripts used to process that data and generate the figures that rely on the ComEd data (Scripts 3-5 below).
 
-2. Run the following scripts in the `workflow` directory to re-create this experiment:
+2. Run the following scripts in the `workflow` directory to process the data this experiment:
 
 | Script Number | Script Name | Purpose |
 | --- | --- | --- |
-| 1 | `Process_Raw_ComEd_Data.m` | Script to process the raw ComEd data into Matlab files |
+| 1 | `.m` | TBD |
+| 2 | `.m` | TBD |
+| 3 | `Process_Raw_ComEd_Data.m` | Script to process the raw ComEd data into Matlab files |
 
-
-4. Download and unzip the output data from my experiment [Output data](#output-data)
-
-5. Run the following scripts in the `workflow` directory to compare your outputs to those from the publication
+3. Run the following scripts in the `workflow` directory to reproduce our figures and compare your outputs to those from the publication.
