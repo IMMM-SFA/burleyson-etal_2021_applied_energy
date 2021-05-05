@@ -5,7 +5,7 @@
 
 % Take the raw EIA hourly load data by balancing authority and convert it from Excel files into .mat files. 
 % The "data_directory" variable should  be set to the path of the input data that you downloaded 
-% in Step 1 of the workflow. The output file format is given below. All times are in UTC. 
+% in Step 1 of the workflow. The output file format is given below. All times are local. 
 % Missing values are reported as NaN in the .mat output files. 
 
 warning off all; clear all; close all; 
@@ -42,9 +42,9 @@ for file = 1:size(input_files,1)
     for row = 2:size(Raw_Data,1)
         counter = counter + 1;
         
-        % Convert the UTC date from the Excel time format to the Matlab date number format:
-        Data(counter,1) = datenum(Raw_Data{row,2} + 693960);
-        Data(counter,2:7) = datevec(Raw_Data{row,2} + 693960);
+        % Convert the local time date from the Excel time format to the Matlab date number format:
+        Data(counter,1) = datenum(Raw_Data{row,5} + 693960);
+        Data(counter,2:7) = datevec(Raw_Data{row,5} + 693960);
         
         % If there is a valid adjusted demand value then extract it:
         if isempty(Raw_Data{row,15}) == 0
