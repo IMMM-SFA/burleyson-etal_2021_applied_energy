@@ -15,7 +15,7 @@ warning off all; clear all; close all;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              BEGIN USER INPUT SECTION               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Set some execution flags (1 = Yes):
+% Set some execution flags (1 = yes):
 process_raw_data = 0;
 process_aggregate_data = 0;
 plot_images = 1;
