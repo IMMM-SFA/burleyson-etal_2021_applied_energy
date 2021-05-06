@@ -20,7 +20,7 @@ Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Support
 Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Supporting data for Burleyson et al. 2021 - Applied Energy [Data set]. Zenodo. TBD
 
 ## Reproduce my experiment
-1. Download and unzip the input data required to conduct the experiment using the DOI link above. Note that the Commonwealth Edison (ComEd) dataset used in Section 3.1 of the paper is proprietary. As such we cannot share the raw or processed data underpinning that analysis. However, we do share the scripts used to process that data and generate the figures that rely on the ComEd data (Scripts 1-2 and X-Y below).
+1. Download and unzip the input data required to conduct the experiment using the DOI link above. Note that the Commonwealth Edison (ComEd) dataset used in Section 3.1 of the paper is proprietary. As such we cannot share the raw or processed data underpinning that analysis. However, we do share the scripts used to process that data and generate the figures that rely on the ComEd data (Scripts 1, 2, 10, 11, and 15 below).
 
 2. Run the following scripts in the `workflow` directory to process the raw data used in this experiment:
 
@@ -45,4 +45,4 @@ Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Support
 | 12 | `Figure_5_BA_Load_Profiles.m` | Process the underpinning data and generate Fig. 5 and Figs. S4-S5 |
 | 13 | `Figure_6_BA_Subregion_Load_Profile_Changes.m` | Process the underpinning data and generate Fig. 6 and Figs. S6-S7 |
 | 14 | `Figures_7_and_8_Monthly_Electricity_Sales_Changes.m` | Process the underpinning data and generate Figs. 7 and 8 |
-
+| 15 | `Figures_S1_to_S3_ComEd_Load_Profiles.m` | Process the underpinning data and generate Figs. S1-S3 |
