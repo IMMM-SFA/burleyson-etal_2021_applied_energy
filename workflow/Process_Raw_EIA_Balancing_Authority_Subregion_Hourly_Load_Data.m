@@ -3,10 +3,10 @@
 % Casey D. Burleyson
 % Pacific Northwest National Laboratory
 
-% Take the raw EIA hourly load data by balancing authority subregion and convert it from .csv files into .mat files. 
+% Take the raw EIA hourly load data by balancing authority subregion and convert it from Excel files into .mat files. 
 % The "data_directory" variable should  be set to the path of the input data that you downloaded 
-% in Step 1 of the workflow. The output file format is given below. All times are local. 
-% Missing values are reported as NaN in the .mat output files. 
+% in Step 1 of the workflow. The output file format is given below.
+% Missing values are reported as NaN in the .mat output files.
 
 warning off all; clear all; close all; 
 
@@ -52,7 +52,9 @@ if process_raw_data == 1
            end
        end
        clear row
-    
+     
+       Raw_Data = Raw_Data(2:size(Raw_Data,1),:);     
+       
        % Concatenate the data across all of the input files:
        if file == 1
           All_Data = Raw_Data;
@@ -68,55 +70,42 @@ else
    load([data_directory,'input_data/EIA_Balancing_Authority_Hourly_Load/Processed/EIA_Balancing_Authority_Subregion_Hourly_Load_Data_Raw.mat']);
 end
 
-
+% Identify the number of unique BAs and BA sub-regions:
+BAs = unique(All_Data(:,1));  
+SRs = unique(All_Data(:,4));
     
-%     % Identify the number of unique BAs and BA sub-regions:
-%     BAs = unique(Raw_Data(2:size(Raw_Data,1),1));  
-%     SRs = unique(Raw_Data(2:size(Raw_Data,1),4));
-%     
-%     % Loop over the array and assign a BA code to that line of data based
-%     % on matches to the BAs and SRs variables just created:
-%     for row = 2:size(Raw_Data,1)
-%         for i = 1:size(BAs,1)
-%             if strcmpi(Raw_Data{row,1},BAs{i,1}) == 1;
-%                Raw_Data{row,8} = i;
-%             end
-%         end
-%         clear i
-%            
-%         for i = 1:size(SRs,1)
-%                if strcmpi(Raw_Data{row,4},SRs{i,1}) == 1; Raw_Data{row,9} = i; end
-%            end
-%            clear i
-%        end
-%        clear row
+% Loop over the array and assign a BA and SR code to that line of data based
+% on matches to the BAs and SRs variables just created:
+for row = 2:size(All_Data,1)
+    for i = 1:size(BAs,1)
+        if strcmpi(All_Data{row,1},BAs{i,1}) == 1;
+           All_Data{row,8} = i;
+        end
+    end
+    clear i
+           
+    for i = 1:size(SRs,1)
+        if strcmpi(All_Data{row,4},SRs{i,1}) == 1;
+           All_Data{row,9} = i;
+        end
+    end
+    clear i
+end
+clear row
 
-%        for row = 2:size(Raw_Data,1)
-%            Data(row-1,1) = datenum(Raw_Data{row,6} + 693960); % Local time at end of hour
-%            Data(row-1,2) = datenum(Raw_Data{row,7} + 693960); % UTC time at end of hour
-%            Data(row-1,3) = Raw_Data{row,8}; % BA Index
-%            Data(row-1,4) = Raw_Data{row,9}; % Subregion Index
-%            Data(row-1,5) = Raw_Data{row,5}; % Demand (MW)
-%        end
-%        clear row
+% Convert the data to a Matlab array and subset to only the variables of
+% interest. Note that the time formats use Matlab's datenumber format.
+for row = 2:size(All_Data,1)
+    Data(row-1,1) = datenum(All_Data{row,6} + 693960); % Local time at the end of the hour
+    Data(row-1,2) = datenum(All_Data{row,7} + 693960); % UTC time at the end of the hour
+    Data(row-1,3) = All_Data{row,8}; % BA index based on the BAs variable
+    Data(row-1,4) = All_Data{row,9}; % Subregion index based on the SRs variable
+    Data(row-1,5) = All_Data{row,5}; % Demand in MW
+end
+clear row
 
-    
-    
-
-%     % Save the ouput as a .mat file with the following file format:
-%     % C1 = Matlab datenumber
-%     % C2 = Year
-%     % C3 = Month
-%     % C4 = Day
-%     % C5 = Hour
-%     % C6 = Actual demand in MWh
-%     % C7 = Forecast demand in MWh
-%     % C8 = Forecast error in MWh 
-%     save([data_directory,'input_data/EIA_Balancing_Authority_Hourly_Load/Processed/',BA_Code,'_Hourly_Load_Data.mat'],'Data');
-%        
-%     clear Data filename Raw_Data counter row BA_Code
-% end
-
+% Save the output as a .mat file:
+save([data_directory,'input_data/EIA_Balancing_Authority_Hourly_Load/Processed/EIA_Balancing_Authority_Subregion_Hourly_Load_Data_Processed.mat'],'Data','BAs','SRs');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %               END PROCESSING SECTION                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
