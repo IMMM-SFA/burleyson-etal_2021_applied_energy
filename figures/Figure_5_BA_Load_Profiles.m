@@ -20,7 +20,7 @@ plot_images = 1;
 save_images = 1;
 
 % Choose which BA to process and plot:
-ba_to_plot = 1; % (1 = PJM, 2 = CISO, 3 = NYIS)
+ba_to_plot = 3; % (1 = PJM, 2 = CISO, 3 = NYIS)
 
 % Set the base data input and output directories and the image output directory:
 data_directory = '/Users/burl878/OneDrive - PNNL/Documents/Papers/2021_Burleyson_et_al/burleyson-etal_2021_applied_energy_data/';
@@ -63,13 +63,13 @@ if process_data == 1
               for hour = 0:1:23
                   Hour_Subset = Weekday_Subset(find(Weekday_Subset(:,5) == hour),:);
                   if isempty(Hour_Subset) == 0
-                     Weekday_Mean(counter,hour+1) = nanmean(Hour_Subset(:,7));
+                     Weekday_Mean(counter,hour+1) = nanmean(Hour_Subset(:,6));
                   else
                      Weekday_Mean(counter,hour+1) = NaN.*0;
                   end
                   Hour_Subset = Weekend_Subset(find(Weekend_Subset(:,5) == hour),:);
                   if isempty(Hour_Subset) == 0
-                     Weekend_Mean(counter,hour+1) = nanmean(Hour_Subset(:,7));
+                     Weekend_Mean(counter,hour+1) = nanmean(Hour_Subset(:,6));
                   else
                      Weekend_Mean(counter,hour+1) = NaN.*0;
                   end
@@ -93,6 +93,7 @@ if process_data == 1
    end
    clear Data
 else
+   % If the pre-processing flag is turned off then just read in the results that you have previously processed:
    if ba_to_plot == 1
       load([data_directory,'output_data/Figure_5_',BA_Code,'_BA_Load_Profiles.mat']);
    elseif ba_to_plot == 2
