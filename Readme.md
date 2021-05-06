@@ -44,3 +44,5 @@ Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Support
 | 11 | `Figure_4_ComEd_AJS.m` | Process the underpinning data and generate Fig. 4 |
 | 12 | `Figure_5_BA_Load_Profiles.m` | Process the underpinning data and generate Fig. 5 and Figs. S4-S5 |
 | 13 | `Figure_6_BA_Subregion_Load_Profile_Changes.m` | Process the underpinning data and generate Fig. 6 and Figs. S6-S7 |
+| 14 | `Figures_7_and_8_Monthly_Electricity_Sales_Changes.m` | Process the underpinning data and generate Figs. 7 and 8 |
+
