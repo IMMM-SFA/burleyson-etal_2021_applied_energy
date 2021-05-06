@@ -20,7 +20,7 @@ Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Support
 Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Supporting data for Burleyson et al. 2021 - Applied Energy [Data set]. Zenodo. TBD
 
 ## Reproduce my experiment
-Note: The Commonwealth Edison (ComEd) dataset used in Section 3.1 of the paper is proprietary. As such we cannot share the raw or processed data underpinning that analysis. However, we do share the scripts used to process that data and generate the figures that rely on the ComEd data (scripts 1, 2, 10, 11, and 15 below). We used data from April 2018 through September 2020 in this paper. The ComEd data can be purchased from: https://www.comed.com/SmartEnergy/InnovationTechnology/pages/anonymousdataservice.aspx
+Note: The Commonwealth Edison (ComEd) dataset used in Section 3.1 of the paper is proprietary. As such we cannot share the raw or processed data underpinning that analysis. However, we do share the scripts used to process that data and generate the figures that rely on the ComEd data (scripts 1, 2, 10, 11, and 15 below). We used ComEd data from April 2018 through September 2020 in this paper. The ComEd data can be purchased from: https://www.comed.com/SmartEnergy/InnovationTechnology/pages/anonymousdataservice.aspx. 
 
 1. Download and unzip the input data required to conduct the experiment using the DOI link above.
 
