@@ -75,7 +75,9 @@ BAs = unique(All_Data(:,1));
 SRs = unique(All_Data(:,4));
     
 % Loop over the array and assign a BA and SR code to that line of data based
-% on matches to the BAs and SRs variables just created:
+% on matches to the BAs and SRs variables just created. Convert the data to 
+% a Matlab array and subset to only the variables of interest. Note that the 
+% time formats use Matlab's datenumber format.
 for row = 2:size(All_Data,1)
     for i = 1:size(BAs,1)
         if strcmpi(All_Data{row,1},BAs{i,1}) == 1;
@@ -90,12 +92,7 @@ for row = 2:size(All_Data,1)
         end
     end
     clear i
-end
-clear row
-
-% Convert the data to a Matlab array and subset to only the variables of
-% interest. Note that the time formats use Matlab's datenumber format.
-for row = 2:size(All_Data,1)
+    
     Data(row-1,1) = datenum(All_Data{row,6} + 693960); % Local time at the end of the hour
     Data(row-1,2) = datenum(All_Data{row,7} + 693960); % UTC time at the end of the hour
     Data(row-1,3) = All_Data{row,8}; % BA index based on the BAs variable
