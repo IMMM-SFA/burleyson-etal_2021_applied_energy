@@ -22,7 +22,7 @@ Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Support
 ## Reproduce my experiment
 1. Download and unzip the input data required to conduct the experiment using the DOI link above. Note that the Commonwealth Edison (ComEd) dataset used in Section 3.1 of the paper is proprietary. As such we cannot share the raw or processed data underpinning that analysis. However, we do share the scripts used to process that data and generate the figures that rely on the ComEd data (Scripts 1, 2, 10, 11, and 15 below).
 
-2. Run the following scripts in the `workflow` directory to process the raw data used in this experiment:
+2. Run the following Matlab scripts in the `workflow` directory to process the raw data used in this experiment:
 
 | Script Number | Script Name | Purpose |
 | --- | --- | --- |
@@ -34,7 +34,7 @@ Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Support
 | 6 | `Process_Raw_EIA_Balancing_Authority_Subregion_Hourly_Load_Data.m` | Process the raw EIA balancing authority subregion hourly load data into Matlab files |
 | 7 | `Process_Raw_EIA_Monthly_Sales_by_State_Data.m` | Process the raw EIA-860 state electricity sales data into a Matlab file |
 
-3. Run the following scripts in the `figures` directory to reproduce our figures and compare your outputs to those from the publication.
+3. Run the following Matlab scripts in the `figures` directory to reproduce our figures and compare your outputs to those from the publication.
 
 | Script Number | Script Name | Purpose |
 | --- | --- | --- |
