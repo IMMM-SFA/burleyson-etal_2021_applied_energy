@@ -42,3 +42,4 @@ Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Support
 | X | `Figure_3_ComEd_Shutdown.m` | Process the underpinning data and generate Fig. 3 |
 | X | `Figure_4_ComEd_AJS.m` | Process the underpinning data and generate Fig. 4 |
 | X | `Figure_5_BA_Load_Profiles.m` | Process the underpinning data and generate Fig. 5 and Figs. S4-S5 |
+| X | `Figure_6_BA_Subregion_Load_Profile_Changes.m` | Process the underpinning data and generate Fig. 6 and Figs. S6-S7 |
