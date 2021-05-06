@@ -38,9 +38,9 @@ Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Support
 
 | Script Number | Script Name | Purpose |
 | --- | --- | --- |
-| X | `Figure_1_EIA_Forecast_Error.m` | Process the underpinning data and generate Fig. 1 |
-| X | `Figure_2_Maps.m` | Process the underpinning data and generate Fig. 2  |
-| X | `Figure_3_ComEd_Shutdown.m` | Process the underpinning data and generate Fig. 3 |
-| X | `Figure_4_ComEd_AJS.m` | Process the underpinning data and generate Fig. 4 |
-| X | `Figure_5_BA_Load_Profiles.m` | Process the underpinning data and generate Fig. 5 and Figs. S4-S5 |
-| X | `Figure_6_BA_Subregion_Load_Profile_Changes.m` | Process the underpinning data and generate Fig. 6 and Figs. S6-S7 |
+| 8 | `Figure_1_EIA_Forecast_Error.m` | Process the underpinning data and generate Fig. 1 |
+| 9 | `Figure_2_Maps.m` | Process the underpinning data and generate Fig. 2  |
+| 10 | `Figure_3_ComEd_Shutdown.m` | Process the underpinning data and generate Fig. 3 |
+| 11 | `Figure_4_ComEd_AJS.m` | Process the underpinning data and generate Fig. 4 |
+| 12 | `Figure_5_BA_Load_Profiles.m` | Process the underpinning data and generate Fig. 5 and Figs. S4-S5 |
+| 13 | `Figure_6_BA_Subregion_Load_Profile_Changes.m` | Process the underpinning data and generate Fig. 6 and Figs. S6-S7 |
