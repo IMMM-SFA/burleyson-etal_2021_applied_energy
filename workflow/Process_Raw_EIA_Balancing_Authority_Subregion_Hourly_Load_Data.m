@@ -78,7 +78,7 @@ SRs = unique(All_Data(:,4));
 % on matches to the BAs and SRs variables just created. Convert the data to 
 % a Matlab array and subset to only the variables of interest. Note that the 
 % time formats use Matlab's datenumber format.
-for row = 2:size(All_Data,1)
+for row = 1:size(All_Data,1)
     for i = 1:size(BAs,1)
         if strcmpi(All_Data{row,1},BAs{i,1}) == 1;
            All_Data{row,8} = i;
@@ -93,11 +93,11 @@ for row = 2:size(All_Data,1)
     end
     clear i
     
-    Data(row-1,1) = datenum(All_Data{row,6} + 693960); % Local time at the end of the hour
-    Data(row-1,2) = datenum(All_Data{row,7} + 693960); % UTC time at the end of the hour
-    Data(row-1,3) = All_Data{row,8}; % BA index based on the BAs variable
-    Data(row-1,4) = All_Data{row,9}; % Subregion index based on the SRs variable
-    Data(row-1,5) = All_Data{row,5}; % Demand in MW
+    Data(row,1) = datenum(All_Data{row,6} + 693960); % Local time at the end of the hour
+    Data(row,2) = datenum(All_Data{row,7} + 693960); % UTC time at the end of the hour
+    Data(row,3) = All_Data{row,8}; % BA index based on the BAs variable
+    Data(row,4) = All_Data{row,9}; % Subregion index based on the SRs variable
+    Data(row,5) = All_Data{row,5}; % Demand in MW
 end
 clear row
 
