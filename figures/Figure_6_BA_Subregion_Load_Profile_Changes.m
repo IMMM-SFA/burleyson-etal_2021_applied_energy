@@ -21,7 +21,7 @@ plot_images = 1;
 save_images = 1;
 
 % Choose which BA to process and plot:
-ba_to_plot = 3; % (1 = PJM, 2 = CISO, 3 = NYIS)
+ba_to_plot = 1; % (1 = PJM, 2 = CISO, 3 = NYIS)
 
 % Set the base data input and output directories and the image output directory:
 data_directory = '/Users/burl878/OneDrive - PNNL/Documents/Papers/2021_Burleyson_et_al/burleyson-etal_2021_applied_energy_data/';
