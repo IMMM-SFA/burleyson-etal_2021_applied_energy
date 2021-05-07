@@ -15,9 +15,9 @@ warning off all; clear all; close all;
 %              BEGIN USER INPUT SECTION               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Set some processing flags:
-process_data = 1; % (1 = yes)
+process_data = 0; % (1 = yes)
 plot_images = 1; % (1 = yes)
-save_images = 1; % (1 = yes)
+save_images = 0; % (1 = yes)
 
 % Set the bins used in the change histograms:
 change_bins = [-30:5:30];
@@ -137,7 +137,8 @@ end
 % Compute the standard deviation of the year-over-year changes in total
 % sales of electricity:
 Pre_COVID = Tot_Load_Delta(:,find(Time_Delta(1,:) < 2020));
-standard_deviation = nanstd(Pre_COVID(:));
+pre_covid_mean = nanmean(Pre_COVID(:));
+pre_standard_deviation = nanstd(Pre_COVID(:));
 clear Pre_COVID
 
 % Compute the frequnecy with which the year-over-year change in residential
@@ -208,12 +209,12 @@ if plot_images == 1
        if month == 11; label = '(k)'; index = 13; end;
        if month == 12; label = '(l)'; index = 14; end;
        subplot(3,5,index); hold on;
-       fill([-3.*standard_deviation -3.*standard_deviation 3.*standard_deviation 3.*standard_deviation],[0 1 1 0],[0.9 0.9 0.9],'EdgeColor',[0.9 0.9 0.9],'LineWidth',0.1);
-       fill([-2.*standard_deviation -2.*standard_deviation 2.*standard_deviation 2.*standard_deviation],[0 1 1 0],[0.8 0.8 0.8],'EdgeColor',[0.8 0.8 0.8],'LineWidth',0.1);
-       fill([-1.*standard_deviation -1.*standard_deviation 1.*standard_deviation 1.*standard_deviation],[0 1 1 0],[0.7 0.7 0.7],'EdgeColor',[0.7 0.7 0.7],'LineWidth',0.1);
+       fill([(pre_covid_mean-3.*pre_standard_deviation) (pre_covid_mean-3.*pre_standard_deviation) (pre_covid_mean+3.*pre_standard_deviation) (pre_covid_mean+3.*pre_standard_deviation)],[0 1 1 0],[0.9 0.9 0.9],'EdgeColor',[0.9 0.9 0.9],'LineWidth',0.1);
+       fill([(pre_covid_mean-2.*pre_standard_deviation) (pre_covid_mean-2.*pre_standard_deviation) (pre_covid_mean+2.*pre_standard_deviation) (pre_covid_mean+2.*pre_standard_deviation)],[0 1 1 0],[0.8 0.8 0.8],'EdgeColor',[0.8 0.8 0.8],'LineWidth',0.1);
+       fill([(pre_covid_mean-1.*pre_standard_deviation) (pre_covid_mean-1.*pre_standard_deviation) (pre_covid_mean+1.*pre_standard_deviation) (pre_covid_mean+1.*pre_standard_deviation)],[0 1 1 0],[0.7 0.7 0.7],'EdgeColor',[0.7 0.7 0.7],'LineWidth',0.1);
        line(change_bins,Tot_Changes_Base(month,:),'Color','k','LineWidth',3,'Linestyle','--');
        line(change_bins,Tot_Changes_2020(month,:),'Color','k','LineWidth',3,'Linestyle','-');
-       line([0 0],[0 1],'Color',[0.8 0.8 0.8],'LineWidth',3);
+       line([pre_covid_mean pre_covid_mean],[0 1],'Color',[0.8 0.8 0.8],'LineWidth',3);
        xlim([-25 25]); set(gca,'xtick',[-30:5:30],'xticklabel',{'-30','','-20','','-10','','0','','+10','','+20','','+30'});
        ylim([0 (max([Tot_Changes_Base(month,:),Tot_Changes_2020(month,:)]))+0.02]);
        set(gca,'ytick',[0:0.05:1],'yticklabel',{'0','','10','','20','','30','','40','','50','','60','','70','','80','','90','','100'});
@@ -256,14 +257,14 @@ if plot_images == 1
        if month == 11; label = '(k)'; index = 13; end;
        if month == 12; label = '(l)'; index = 14; end;
        subplot(3,5,index); hold on;
-       fill([-3.*standard_deviation -3.*standard_deviation 3.*standard_deviation 3.*standard_deviation],[0 1 1 0],[0.9 0.9 0.9],'EdgeColor',[0.9 0.9 0.9],'LineWidth',0.1);
-       fill([-2.*standard_deviation -2.*standard_deviation 2.*standard_deviation 2.*standard_deviation],[0 1 1 0],[0.8 0.8 0.8],'EdgeColor',[0.8 0.8 0.8],'LineWidth',0.1);
-       fill([-1.*standard_deviation -1.*standard_deviation 1.*standard_deviation 1.*standard_deviation],[0 1 1 0],[0.7 0.7 0.7],'EdgeColor',[0.7 0.7 0.7],'LineWidth',0.1);
+       fill([(pre_covid_mean-3.*pre_standard_deviation) (pre_covid_mean-3.*pre_standard_deviation) (pre_covid_mean+3.*pre_standard_deviation) (pre_covid_mean+3.*pre_standard_deviation)],[0 1 1 0],[0.9 0.9 0.9],'EdgeColor',[0.9 0.9 0.9],'LineWidth',0.1);
+       fill([(pre_covid_mean-2.*pre_standard_deviation) (pre_covid_mean-2.*pre_standard_deviation) (pre_covid_mean+2.*pre_standard_deviation) (pre_covid_mean+2.*pre_standard_deviation)],[0 1 1 0],[0.8 0.8 0.8],'EdgeColor',[0.8 0.8 0.8],'LineWidth',0.1);
+       fill([(pre_covid_mean-1.*pre_standard_deviation) (pre_covid_mean-1.*pre_standard_deviation) (pre_covid_mean+1.*pre_standard_deviation) (pre_covid_mean+1.*pre_standard_deviation)],[0 1 1 0],[0.7 0.7 0.7],'EdgeColor',[0.7 0.7 0.7],'LineWidth',0.1);
        line(change_bins,Res_Changes_Base(month,:),'Color','r','LineWidth',3,'Linestyle','--');
        line(change_bins,Res_Changes_2020(month,:),'Color','r','LineWidth',3,'Linestyle','-');
        line(change_bins,Com_Changes_Base(month,:),'Color','b','LineWidth',3,'Linestyle','--');
        line(change_bins,Com_Changes_2020(month,:),'Color','b','LineWidth',3,'Linestyle','-');
-       line([0 0],[0 1],'Color',[0.8 0.8 0.8],'LineWidth',3);
+       line([pre_covid_mean pre_covid_mean],[0 1],'Color',[0.8 0.8 0.8],'LineWidth',3);
        xlim([-25 25]); set(gca,'xtick',[-30:5:30],'xticklabel',{'-30','','-20','','-10','','0','','+10','','+20','','+30'});
        ylim([0 (max([Res_Changes_Base(month,:),Res_Changes_2020(month,:),Com_Changes_Base(month,:),Com_Changes_2020(month,:)]))+0.02]);
        set(gca,'ytick',[0:0.05:1],'yticklabel',{'0','','10','','20','','30','','40','','50','','60','','70','','80','','90','','100'});
