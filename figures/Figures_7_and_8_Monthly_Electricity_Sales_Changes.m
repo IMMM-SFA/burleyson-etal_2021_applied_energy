@@ -15,9 +15,9 @@ warning off all; clear all; close all;
 %              BEGIN USER INPUT SECTION               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Set some processing flags:
-process_data = 0; % (1 = yes)
+process_data = 1; % (1 = yes)
 plot_images = 1; % (1 = yes)
-save_images = 0; % (1 = yes)
+save_images = 1; % (1 = yes)
 
 % Set the bins used in the change histograms:
 change_bins = [-30:5:30];
