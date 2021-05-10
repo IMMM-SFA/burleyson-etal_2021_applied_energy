@@ -16,7 +16,7 @@ Shelter-in-place orders and school and business closures related to COVID-19 cha
 Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Multiscale effects can mask the impact of the COVID-19 pandemic on electricity demand. Submitted to *Applied Energy* - May 2021.
 
 ## Code reference
-Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Supporting code for Burleyson et al. 2021 - Applied Energy [Code]. Zenodo. TBD
+Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Supporting code for Burleyson et al. 2021 - Applied Energy [Code]. Zenodo. https://doi.org/10.5281/zenodo.4747139.
 
 ## Data reference
 Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Supporting data for Burleyson et al. 2021 - Applied Energy [Data set]. Zenodo. https://doi.org/10.5281/zenodo.4746978.
