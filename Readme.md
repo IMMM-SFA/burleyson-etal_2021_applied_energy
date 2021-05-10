@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/364393075.svg)](https://zenodo.org/badge/latestdoi/364393075)
+
 # burleyson-etal_2021_applied_energy
 
 **Multiscale Effects Can Mask the Impact of the COVID-19 Pandemic on Electricity Demand**
