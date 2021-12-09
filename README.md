@@ -19,6 +19,10 @@ Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Multisc
 Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Supporting code for Burleyson et al. 2021 - Applied Energy [Code]. Zenodo. https://doi.org/10.5281/zenodo.4747139.
 
 ## Data reference
+### Input data
+Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Supporting data for Burleyson et al. 2021 - Applied Energy [Data set]. Zenodo. https://doi.org/10.5281/zenodo.4746978.
+
+### Output data
 Burleyson, C.D., A. Rahman, J.S. Rice, A.D. Smith, and N. Voisin (2021). Supporting data for Burleyson et al. 2021 - Applied Energy [Data set]. Zenodo. https://doi.org/10.5281/zenodo.4746978.
 
 ## Reproduce my experiment
@@ -38,7 +42,8 @@ Note: The Commonwealth Edison (ComEd) dataset used in Section 3.1 of the paper i
 | 6 | `Process_Raw_EIA_Balancing_Authority_Subregion_Hourly_Load_Data.m` | Process the raw EIA-930 balancing authority subregion hourly load data into Matlab files |
 | 7 | `Process_Raw_EIA_Monthly_Sales_by_State_Data.m` | Process the raw EIA-860 state electricity sales data into a Matlab file |
 
-3. Run the following Matlab scripts in the `figures` directory to reproduce our figures and compare your outputs to those from the publication.
+## Reproduce my figures
+Run the following Matlab scripts in the `figures` directory to reproduce our figures and compare your outputs to those from the publication.
 
 | Script Number | Script Name | Purpose |
 | --- | --- | --- |
